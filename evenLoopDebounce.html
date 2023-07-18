@@ -1,0 +1,26 @@
+ <input type="text" id="textInput" />
+
+<script>
+  function debounce(func, delay) {
+    let timer;
+
+    return function() {
+      const context = this;
+      const args = arguments;
+
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        func.apply(context, args);
+      }, delay);
+    };
+  }
+
+  function handleInput() {
+    const inputValue = document.getElementById('textInput').value;
+    console.log('Input value:', inputValue);
+  }
+
+  const debouncedInputHandler = debounce(handleInput, 500);
+
+  document.getElementById('textInput').addEventListener('input', debouncedInputHandler);
+</script>
